@@ -1,0 +1,2 @@
+# github3.py library
+TOKEN = "PUT THE TOKEN FROM GITHUB HERE"
