@@ -1,3 +1,12 @@
+# Copyright 2019 Arif Nurwidyantoro
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
 import mysql.connector
 
 
@@ -36,15 +45,7 @@ class Database:
         cursor.execute(sql, val)
         Database.__connection.commit()
 
-    @staticmethod
-    def insert_sourcecode_comments(project_name, classname, comment):
-        cursor = Database.__connection.cursor()
-        sql = "INSERT INTO sc_comments (project_name, class_name, comment) VALUES (%s, %s, %s)"
-        val = [project_name, classname, comment]
-
-        cursor.execute(sql, val)
-        Database.__connection.commit()
-
+    
     @staticmethod
     def insert_commits(sha, message, author, created_at, committer, committed_at, project_name, downloaded_at):
         cursor = Database.__connection.cursor()
@@ -75,16 +76,6 @@ class Database:
         sql = "INSERT INTO issues (issue_id, issue_number, project_name, title, reporter, created_at, downloaded_at, body_text, " \
               "body_html) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
         val = [issue_id, issue_number, project_name, title, reporter, created_at, downloaded_at, body_text, body_html]
-
-        cursor.execute(sql, val)
-        Database.__connection.commit()
-
-    @staticmethod
-    def insert_commit_author_fix(username, authorname, last_updated):
-        cursor = Database.__connection.cursor()
-
-        sql = "INSERT INTO author_mapping (username, authorname, last_updated) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE last_updated = %s"
-        val = [username, authorname, last_updated, last_updated]
 
         cursor.execute(sql, val)
         Database.__connection.commit()
