@@ -1,4 +1,7 @@
-# Setup
+# Scraping GitHub Artefacts
+
+github3.py library is needed to use this script. Please refer to its [installation instruction](https://pypi.org/project/github3.py/) and [documentation](https://github3py.readthedocs.io/en/master/). 
+
 
 Configuration files that are needed to be setup:
 
@@ -18,6 +21,8 @@ If you are using local database, most likely you will use `localhost` as the hos
 ## Project List
 
 Specify the list of the project as key-value pairs, whereas the project shortname as the key and the GitHub URL of the project as the value. You can specify the project shortname on your own. The project shortname will be used as the `project_name` field in the database.
+
+Example:
 
 ```python
 projects = {
